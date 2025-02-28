@@ -1,69 +1,89 @@
 # ESP8266 LED Matrix Controller
 
-An interactive LED matrix controller using ESP8266 with touch sensor control and web interface.
-
-## Features
-
-- 20 predefined LED patterns with creative animations
-- Touch sensor control with buzzer feedback
-- Web interface with two main features:
-  - Pattern Selector: Choose from predefined patterns
-  - Pattern Creator: Create custom patterns with intuitive controls
-- Real-time pattern switching
-- Visual and audio feedback
+A web-controlled LED matrix system using ESP8266 with touch sensor input and buzzer feedback.
 
 ## Hardware Requirements
 
 - ESP8266 (NodeMCU)
-- 6-row LED Matrix:
-  - Rows 1-2: Blue LEDs
-  - Rows 3-4: Red LEDs
-  - Rows 5-6: Green LEDs
-- Touch Sensor (connected to SD2)
-- Buzzer (connected to SD0)
+- LED Matrix (6 rows):
+  - Blue rows (D1, D2)
+  - Red rows (D3, D4)
+  - Green rows (D5, D6)
+- Touch Sensor (SD2)
+- Buzzer (SD0)
 
-## Pin Configuration
+## Software Requirements
 
-- D1 -> Blue1 (First blue row)
-- D2 -> Blue2 (Second blue row)
-- D3 -> Red1 (First red row)
-- D4 -> Red2 (Second red row)
-- D5 -> Green1 (First green row)
-- D6 -> Green2 (Second green row)
-- SD2 -> Touch Sensor
-- SD0 -> Buzzer
+- PlatformIO IDE
+- Arduino framework
+- ESP8266 board support
+- Required libraries:
+  - ESP8266WiFi
+  - ESP8266WebServer
+  - ArduinoJson
+  - LittleFS
 
 ## Setup Instructions
 
 1. Clone this repository
-2. Open `led_matrix_controller.ino` in Arduino IDE
-3. Install required libraries:
-   - ESP8266WiFi
-   - ESP8266WebServer
-   - ArduinoJson
-   - LittleFS
-4. Update WiFi credentials in the sketch
-5. Upload the sketch to your ESP8266
-6. Upload the contents of the `data` folder using "ESP8266 Sketch Data Upload" tool
+2. Open the project in PlatformIO IDE
+3. Update WiFi credentials in `led_matrix_controller.ino`:
+   ```cpp
+   const char* ssid = "Matrix";      // Your WiFi SSID
+   const char* password = "matrix123"; // Your WiFi password
+   ```
+
+4. Build and Upload:
+   - The main program will be uploaded automatically
+   - The filesystem (containing web interface files) will be built and uploaded automatically
+
+## Features
+
+1. LED Patterns:
+   - 20 predefined patterns with creative animations
+   - Custom pattern creation through web interface
+   - Pattern switching via touch sensor
+   - Visual feedback through LED animations
+   - Audio feedback through buzzer
+
+2. Web Interface:
+   - Pattern Selector tab
+     - List of all available patterns
+     - Radio button selection
+   - Pattern Creator tab
+     - Create custom patterns stage by stage
+     - Circular brightness sliders for each LED row
+     - Save and apply new patterns
 
 ## Usage
 
 1. Power up the ESP8266
-2. Connect to the same WiFi network
-3. Access the web interface using ESP8266's IP address
-4. Use either:
-   - Touch sensor to cycle through patterns
-   - Web interface to select or create patterns
+2. Connect to the configured WiFi network
+3. Access the web interface at the ESP8266's IP address (shown in Serial Monitor)
+4. Use touch sensor to cycle through patterns
+5. Create custom patterns through the web interface
 
-## Project Structure
+## File Structure
 
-- `led_matrix_controller.ino`: Main Arduino sketch
-- `data/`
-  - `index.html`: Web interface
-  - `style.css`: CSS styling
-  - `script.js`: JavaScript functionality
+```
+├── led_matrix_controller.ino  # Main Arduino code
+├── platformio.ini             # PlatformIO configuration
+├── data/                      # Web interface files
+│   ├── index.html            # Main HTML file
+│   ├── style.css             # CSS styles
+│   └── script.js             # JavaScript code
+└── scripts/
+    └── build_littlefs.py     # LittleFS build script
+```
 
-## Pattern List
+## Troubleshooting
+
+If the web interface shows "File not found":
+1. Ensure the data files are properly uploaded to LittleFS
+2. Check Serial Monitor for filesystem mounting status
+3. Verify that all required files exist in the data directory
+
+## LED Pattern Names
 
 1. Aurora Cascade
 2. Neon Pulse
@@ -85,7 +105,3 @@ An interactive LED matrix controller using ESP8266 with touch sensor control and
 18. Fibonacci Sequence
 19. Color Meditation
 20. Quantum Entanglement
-
-## License
-
-MIT License
