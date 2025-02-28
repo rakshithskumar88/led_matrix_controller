@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED Matrix Controller</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="pattern-selector">Pattern Selector</button>
+            <button class="tab-btn" data-tab="pattern-creator">Pattern Creator</button>
+        </div>
+
+        <div id="pattern-selector" class="tab-content active">
+            <h2>Select Pattern</h2>
+            <form id="pattern-select-form">
+                <div class="pattern-list">
+                    <!-- Patterns will be populated by JavaScript -->
+                </div>
+            </form>
+        </div>
+
+        <div id="pattern-creator" class="tab-content">
+            <h2>Create New Pattern</h2>
+            <form id="pattern-create-form">
+                <div class="form-group">
+                    <label for="pattern-name">Pattern Name:</label>
+                    <input type="text" id="pattern-name" required>
+                </div>
+
+                <div id="stages-container">
+                    <!-- Stages will be added here -->
+                </div>
+
+                <button type="button" id="add-stage" class="btn">Add Stage</button>
+                <button type="submit" class="btn primary">Save Pattern</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Stage Template -->
+    <template id="stage-template">
+        <div class="stage">
+            <h3>Stage 1</h3>
+            <div class="sliders">
+                <div class="slider-group">
+                    <label>Blue 1</label>
+                    <div class="circular-slider">
+                        <input type="range" class="slider" min="0" max="255" value="0">
+                        <span class="slider-value">0</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label>Blue 2</label>
+                    <div class="circular-slider">
+                        <input type="range" class="slider" min="0" max="255" value="0">
+                        <span class="slider-value">0</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label>Red 1</label>
+                    <div class="circular-slider">
+                        <input type="range" class="slider" min="0" max="255" value="0">
+                        <span class="slider-value">0</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label>Red 2</label>
+                    <div class="circular-slider">
+                        <input type="range" class="slider" min="0" max="255" value="0">
+                        <span class="slider-value">0</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label>Green 1</label>
+                    <div class="circular-slider">
+                        <input type="range" class="slider" min="0" max="255" value="0">
+                        <span class="slider-value">0</span>
+                    </div>
+                </div>
+                <div class="slider-group">
+                    <label>Green 2</label>
+                    <div class="circular-slider">
+                        <input type="range" class="slider" min="0" max="255" value="0">
+                        <span class="slider-value">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>
