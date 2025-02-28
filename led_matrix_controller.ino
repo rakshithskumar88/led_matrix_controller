@@ -243,12 +243,6 @@ void updateLEDs(const uint8_t* brightness) {
 }
 
 
-void nextPattern() {
-    currentPatternIndex = (currentPatternIndex + 1) % MAX_PATTERNS;
-    currentStageIndex = 0;
-    beepBuzzer();
-}
-
 void runCurrentPattern() {
     if (millis() - lastPatternUpdate >= STAGE_DURATION) {
         Pattern& currentPattern = patterns[currentPatternIndex];
